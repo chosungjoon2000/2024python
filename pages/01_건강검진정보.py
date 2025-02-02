@@ -5,8 +5,8 @@ import altair as alt
 # Streamlit 웹앱 제목
 st.title("🏥 서울 상급종합병원 중환자실 병상 현황")
 
-# CSV 파일 불러오기 (GitHub URL 또는 직접 업로드 선택 가능)
-DATA_URL = "https://raw.githubusercontent.com/chosungjoon2000/2024python/main/pages/health.csv"
+# CSV 파일 불러오기
+DATA_URL = "health.csv"
 
 uploaded_file = st.file_uploader("📂 CSV 파일을 업로드하세요", type=["csv"])
 if uploaded_file:
@@ -38,7 +38,7 @@ selected_hospital = st.selectbox("병원을 선택하세요", df["요양기관�
 selected_data = df[df["요양기관명"] == selected_hospital]
 st.write(selected_data)
 
-# 병상 수 비율 파이 차트
+# 병상 수 비율 바 차트
 st.subheader("📌 병상 유형별 비율 분석")
 selected_hospital_data = selected_data.iloc[0]
 labels = ["성인 중환자실", "소아 중환자실", "신생아 중환자실", "격리병실"]
@@ -53,4 +53,3 @@ st.bar_chart(pd.DataFrame({"병상 유형": labels, "병상 수": values}).set_i
 
 # Streamlit 애니메이션 효과
 st.balloons()
-
